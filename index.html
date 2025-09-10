@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
 </head>
 <body>
-    <textarea id="display"></textarea>
-        <div class="btn-container">
-            <div class ="operators">
-                <button class="btns" id="addbtn">+</button>
-                <button class="btns" id="subtractbtn">-</button>
-                <button class="btns" id="multiplybtn">x</button>
-                <button class="btns" id="dividebtn">÷</button>
-            </div>
-            <br>
-            <div class ="numbers">
-                <button class="btns">7</button>
-                <button class="btns">8</button>
-                <button class="btns">9</button>
-                <br>
-                <button class="btns">4</button>
-                <button class="btns">5</button>
-                <button class="btns">6</button>
-                <br>
-                <button class="btns">1</button>
-                <button class="btns">2</button>
-                <button class="btns">3</button>
-                <br>
-                <button class="btns">0</button>
-            </div>
-            <button class="btns">.</button>
-            <button id="equalbtn">=</button>
-            <button id="clearbtn">AC</button>
+    <div class="calculator">
+        <div class ="display">
+            <input type="text" class="input" readonly placeholder="0">
+        </div>
+        <div class ="row1">
+            <button class="clearbtn">Clear</button>
+            <button class="deletebtn">Delete</button>
+        </div>
+        <div class ="row2">
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="operator" id="dividebtn">÷</button>
+        </div>
+        <div class ="row3">
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="operator" id="multiplybtn">x</button>
+        </div>
+        <div class ="row4">
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="operator" id="subtractbtn">-</button>
+        </div>
+        <div class ="row5">
+            <button class="number">.</button>
+            <button class="number">0</button>
+            <button class="equal">=</button>
+            <button class="operator" id="addbtn">+</button>
         </div>
     </div>
     

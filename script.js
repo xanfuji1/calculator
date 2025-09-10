@@ -1,72 +1,76 @@
-function add () {
-    return num1 + num2
-}
-function subtract () {
-    return num1 - num2
-}
-function multiply () {
-    return num1 * num2
-}
-function divide () {
-    return num1 / num2
-}
-function operate (num1, num2, operator) {
-// if button clicked is add then call add funciton etc use if statement
+let num1 = "";
+let num2 = "";
+let operator = "";
+let result = "";
+
+function operate(num1, num2, operator) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    if (operator === "+") return num1 + num2;
+    if (operator === "-") return num1 - num2;
+    if (operator === "x") return num1 * num2;
+    if (operator === "÷") {
+        if (num2 === 0) {
+            return 8008135
+        }
+        return num1 / num2;
+    }      
 }
 
-// display
-const buttons = document.querySelectorAll(".btns" );
-const display = document.querySelector("#display");
+const display = document.querySelector(".input")
+const numbers = document.querySelectorAll(".number")
+const operatorbtns = document.querySelectorAll(".operator")
+const equalbtn = document.querySelector(".equal")
+const clearbtn = document.querySelector(".clearbtn")
+const deletebtn = document.querySelector(".deletebtn")
 
-let operation = "";
 let operatorClicked = false;
-const operators = document.querySelectorAll(".operators .btns")
-operators.forEach((operator)=>{
-    operator.addEventListener('click', () => {
-        operatorClicked = true;
-        operation = (operator.textContent)
-        
-    } )
-})
 
-let num1 = ""
-let num2 = ""
-const numbers = document.querySelectorAll(".numbers .btns")
-numbers.forEach((number)=>{
-    number.addEventListener('click', () => {
-        if (!operatorClicked) {
-            num1 += (number.textContent)
-            console.log(num1)
+numbers.forEach(number => {
+    number.addEventListener ("click", () => {
+        if(!operatorClicked) {
+            num1 += number.textContent;
         }
         else {
-            num2 += (number.textContent)
-            console.log(num2)
+            num2 += number.textContent;  
+        }
+        display.value += number.textContent;
+    })
+})
+
+operatorbtns.forEach(operatorbtn => {
+    operatorbtn.addEventListener("click", () => {
+        operatorClicked = true;
+        let prevOperator = operator;
+        operator = operatorbtn.textContent;
+        if (!num2) {display.value = String(num1 + operator);}
+        else {
+            result = operate(num1, num2, prevOperator);
+            num1 = result;
+            num2 = "";
+            display.value = String(result) + operator;
         } 
     })
 })
 
-buttons.forEach((button)=>{
-    button.addEventListener('click', () => {
-    display.innerHTML += button.innerText;
-  });
+equalbtn.addEventListener("click",() => {
+    result = operate(num1, num2, operator);
+    num1 = result;
+    num2 = "";
+    display.value = String(result);
+
+} )
+
+clearbtn.addEventListener("click",() => {
+    display.value = "";
+    num1 = "";
+    num2 = "";
+    operator = "";
+    result = "";
+    operatorClicked = false;
 })
 
-const addBtn = document.querySelector("#addbtn");
-addBtn.addEventListener("click", function () {
-    // add();
-})
-
-const subtractBtn = document.querySelector("#subtractbtn");
-subtractBtn.addEventListener("click", function () {
-    // subtract();
-})
-
-const multiplyBtn = document.querySelector("#multiplybtn");
-multiplyBtn.addEventListener("click", function () {
-    // multiply();
-})
-
-const divideBtn = document.querySelector("#dividebtn");
-divideBtn.addEventListener("click", function () {
-    // divide();
+deletebtn.addEventListener("click", () => {
+    
 })
