@@ -6,17 +6,11 @@ let result = "";
 function operate(num1, num2, operator) {
     num1 = Number(num1);
     num2 = Number(num2);
-
-    if (operator === "+") return num1 + num2;
-    if (operator === "-") return num1 - num2;
-    if (operator === "x") return num1 * num2;
-    if (operator === "÷") {
-        if (num2 === 0) {
-            return 8008135
-        }
-        return num1 / num2;
+    if (operator === "+") return Math.round((num1 + num2)*100)/100;
+    if (operator === "-") return Math.round((num1 - num2)*100)/100;
+    if (operator === "x") return Math.round((num1 * num2)*100)/100; 
+    if (operator === "÷") return Math.round((num1 / num2)*100)/100;
     }      
-}
 
 const display = document.querySelector(".input")
 const numbers = document.querySelectorAll(".number")
@@ -24,8 +18,7 @@ const operatorbtns = document.querySelectorAll(".operator")
 const equalbtn = document.querySelector(".equal")
 const clearbtn = document.querySelector(".clearbtn")
 const deletebtn = document.querySelector(".deletebtn")
-
-let operatorClicked = false;
+const decimalbtn = document.querySelector(".decimalbtn")
 
 numbers.forEach(number => {
     number.addEventListener ("click", () => {
@@ -38,6 +31,8 @@ numbers.forEach(number => {
         display.value += number.textContent;
     })
 })
+
+operatorClicked = false;
 
 operatorbtns.forEach(operatorbtn => {
     operatorbtn.addEventListener("click", () => {
@@ -58,8 +53,8 @@ equalbtn.addEventListener("click",() => {
     result = operate(num1, num2, operator);
     num1 = result;
     num2 = "";
+    operatorClicked = false;
     display.value = String(result);
-
 } )
 
 clearbtn.addEventListener("click",() => {
@@ -72,5 +67,22 @@ clearbtn.addEventListener("click",() => {
 })
 
 deletebtn.addEventListener("click", () => {
-    
+    display.value = display.value.slice(0,-1);
 })
+
+decimalbtn.addEventListener("click", () => {
+    if (!operatorClicked) {
+        if (!num1.includes(".")) { 
+           num1 += ".";
+            display.value += ".";   
+        }
+    }
+    else {
+        if (!num2.includes(".")) {
+            num2 += ".";
+            display.value += ".";
+        }
+    } 
+})
+
+
